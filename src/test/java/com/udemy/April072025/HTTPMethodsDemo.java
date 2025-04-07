@@ -21,8 +21,8 @@ public class HTTPMethodsDemo {
                         .body("page",equalTo(2))
                         .body(containsString("email"))
                         .header("Content-Type",equalTo("application/json; charset=utf-8"))
-                        .time(lessThan(2000L))
-                        .log().all();
+                        .time(lessThan(2000L));
+
 
 
     }
