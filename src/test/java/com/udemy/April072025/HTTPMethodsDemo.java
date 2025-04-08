@@ -30,7 +30,7 @@ public class HTTPMethodsDemo {
     //2.POST creating a new user and validating
 
     @Test(priority = 2)
-    void createUsers() {
+    void createUser() {
 
         HashMap<String, String> data = new HashMap<String, String>();
         data.put("name", "pavan");
@@ -65,7 +65,7 @@ public class HTTPMethodsDemo {
                 .body(data)
 
                 .when()
-                .put("https://reqres.in/api/users/719")
+                .put("https://reqres.in/api/users/444")
 
                 .then()
                 .statusCode(200)
@@ -78,5 +78,21 @@ public class HTTPMethodsDemo {
 
     }
 
+    //4.delete the user and validate the response
 
+    @Test(priority = 4)
+    void deleteUser() {
+
+        given()
+
+        .when()
+                .delete("https://reqres.in/api/users/")
+
+        .then()
+                .statusCode(204)
+                .time(lessThan(2000L))
+                .body(emptyOrNullString())
+                .log().all();
+
+    }
 }
