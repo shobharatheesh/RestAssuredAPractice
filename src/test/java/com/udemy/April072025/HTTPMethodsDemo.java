@@ -16,9 +16,9 @@ public class HTTPMethodsDemo {
     @Test(priority = 1)
     void getUsers() {
         given()
-                .when()
-                .get("https://reqres.in/api/users?page=2")
-                .then()
+        .when()
+                .get("https://reqres.in/api/users?page=2");
+        .then()
                 .statusCode(200)
                 .body("page", equalTo(2))
                 .body(containsString("email"))
@@ -39,9 +39,11 @@ public class HTTPMethodsDemo {
         userId = given()
                 .contentType("application/json")
                 .body(data)
-                .when()
+
+        .when()
                 .post("https://reqres.in/api/users")
-                .then()
+
+        .then()
                 .statusCode(201)
                 .header("Content-Type", equalTo("application/json; charset=utf-8"))
                 .time(lessThan(2000L))
@@ -64,10 +66,10 @@ public class HTTPMethodsDemo {
                 .contentType("application/json")
                 .body(data)
 
-                .when()
+        .when()
                 .put("https://reqres.in/api/users/444")
 
-                .then()
+        .then()
                 .statusCode(200)
                 .header("Content-Type", equalTo("application/json; charset=utf-8"))
                 .time(lessThan(2000L))
