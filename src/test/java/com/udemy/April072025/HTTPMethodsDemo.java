@@ -17,7 +17,7 @@ public class HTTPMethodsDemo {
     void getUsers() {
         given()
         .when()
-                .get("https://reqres.in/api/users?page=2");
+                .get("https://reqres.in/api/users?page=2")
         .then()
                 .statusCode(200)
                 .body("page", equalTo(2))
