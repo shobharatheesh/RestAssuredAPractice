@@ -71,7 +71,7 @@ public class HTTPMethodsDemo {
     }
 
     //3.update the existing user and validate the response
-    @Test(priority = 3)
+    @Test(priority = 3, dependsOnMethods ={"createUser"})
     void updateUser() {
         HashMap<String, String> data = new HashMap<String, String>();
         data.put("name", "Shobha");
@@ -97,18 +97,18 @@ public class HTTPMethodsDemo {
 
     //4.delete the user and validate the response
 
-    @Test(priority = 4)
+    @Test(priority = 4,dependsOnMethods = {"createUser","updateUser"})
     void deleteUser() {
 
         given()
 
         .when()
-                .delete("https://reqres.in/api/users/")
+                .delete("https://reqres.in/api/users/" +userId)
 
         .then()
                 .statusCode(204)
                 .time(lessThan(2000L))
-                .body(emptyOrNullString())
+                .body(emptyOrNullString()) //nothing in the bosy i.e empty body
                 .log().all();
 
     }
