@@ -28,7 +28,7 @@ public class HTTPMethodsDemo {
 
     //1. GET ---> Test to retrieve the users and validate the response
 
-    @Test(priority = 1 , enabled=false)
+    @Test(priority = 1 , enabled=true)
     void getUsers() {
         given()
         .when()
