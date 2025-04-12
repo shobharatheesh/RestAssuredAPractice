@@ -29,31 +29,7 @@
         "C#",
         "RestAPI"
       ]
-    },
-    {
-      "id": "03c4",
-      "empty": false,
-      "mapType": "java.util.HashMap"
-    },
-    {
-      "id": "d2ee",
-      "name": "Scott",
-      "location": "France",
-      "phone": "123456",
-      "courses": [
-        "C",
-        "C++"
-      ]
-    },
-    {
-      "id": "7481",
-      "name": "Scott",
-      "location": "France",
-      "phone": "123456",
-      "courses": [
-        "C",
-        "C++"
-      ]
     }
+    
   ]
 }

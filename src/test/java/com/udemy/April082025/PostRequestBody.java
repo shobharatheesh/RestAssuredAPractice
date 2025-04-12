@@ -22,13 +22,14 @@ public class PostRequestBody {
         data.put("location", "France");
         data.put("phone", "123456");
 
-        String courses[] = {"C", "C++"};
-        data.put("courses", courses);
+        String courses[] = {"C", "C++"}; //define an array and adding data
+        data.put("courses", courses); // adding that into hashmap
 
 
         studentId = given()
                 .contentType("application/json")
                 .body(data)
+
                 .when()
                 .post("http://localhost:3000/students")
 
