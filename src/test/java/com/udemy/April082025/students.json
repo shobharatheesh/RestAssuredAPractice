@@ -29,6 +29,11 @@
         "C#",
         "RestAPI"
       ]
+    },
+    {
+      "id": "0afb",
+      "empty": false,
+      "mapType": "java.util.HashMap"
     }
   ]
 }

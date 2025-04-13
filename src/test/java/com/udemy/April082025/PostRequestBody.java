@@ -1,5 +1,6 @@
 package com.udemy.April082025;
 
+import org.json.JSONObject;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ public class PostRequestBody {
     //1.create post request body using  HashMap
 
     @Test
-    void createStudentsusingHashMap() {
+    void createStudentsUsingHashMap() {
 
         HashMap<String, Object> data = new HashMap<>();
         data.put("name", "Scott");
@@ -29,6 +30,40 @@ public class PostRequestBody {
         studentId = given()
                 .contentType("application/json")
                 .body(data)
+
+                .when()
+                .post("http://localhost:3000/students")
+
+                .then()
+                .statusCode(201)
+                .body("name", equalTo("Scott"))
+                .body("location", equalTo("France"))
+                .body("phone", equalTo("123456"))
+                .body("courses[0]", equalTo("C"))
+                .body("courses[1]", equalTo("C++"))
+                .header("Content-Type", equalTo("application/json"))
+                .log().all()
+                .extract().jsonPath().getString("id");
+
+    }
+
+
+    //2.create post request body using  org.json Library
+
+    @Test
+    void createStudentsUsingJsonLibrary() {
+
+        JSONObject data = new JSONObject(); //create a object "data" using JsonObject
+        data.put("name" ,"Scott");
+        data.put("location","France");
+        data.put("phone","123456");
+
+        String courses[] ={"C" ,"C++"}; //array of strings
+        data.put("courses",courses);
+
+        studentId = given()
+                .contentType("application/json")
+                .body(data.toString()) //converts data to string
 
                 .when()
                 .post("http://localhost:3000/students")
