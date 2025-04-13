@@ -41,6 +41,7 @@ public class AuthenticationTests {
                 .body("authenticated", equalTo(true))
                 .log().body();
 
+
     }
 
 
