@@ -81,6 +81,39 @@ public class PostRequestBody {
 
     }
 
+    //Create Post Request Body using  POJO Class
+
+    @Test
+    void createStudentsUsingPojoClass() {
+
+        StudentsPOJO data = new StudentsPOJO();
+        data.setName("Scott");                 //setting variables using setName
+        data.setLocation("France");
+        data.setPhone("123456");
+
+        String courses[] = {"C", "C++"};
+        data.setCourses(courses);
+
+        studentId = given()
+                .contentType("application/json")
+                .body(data) //converts data to string
+
+                .when()
+                .post("http://localhost:3000/students")
+
+                .then()
+                .statusCode(201)
+                .body("name", equalTo(data.getName()))        //Retrieving data using getName
+                .body("location", equalTo(data.getLocation()))
+                .body("phone", equalTo(data.getPhone()))
+                .body("courses[0]", equalTo(data.getCourses()[0]))
+                .body("courses[1]", equalTo(data.getCourses()[1]))
+                .header("Content-Type", equalTo("application/json"))
+                .log().all()
+                .extract().jsonPath().getString("id");
+    }
+
+
     @AfterMethod
     void deleteStudentRecord()
     {
