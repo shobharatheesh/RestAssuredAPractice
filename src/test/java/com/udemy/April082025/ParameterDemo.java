@@ -25,10 +25,11 @@ public class ParameterDemo {
     {
 
         given()
-
+                .queryParam("page","2")
+                .queryParam("id","5")
 
         .when()
-                .get("https://reqres.in/api/users?page=2&id=5")
+                .get("https://reqres.in/api/users")
         .then()
                 .statusCode(200)
                 .log().body();
